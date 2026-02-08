@@ -24,9 +24,9 @@
                             }
                         },
                         "url": {
-                            "raw": "{{baseUrl}}/api/auth/register",
+                            "raw": "http://localhost:8080/api/auth/register",
                             "host": [
-                                "{{baseUrl}}"
+                                "http://localhost:8080"
                             ],
                             "path": [
                                 "api",
@@ -64,9 +64,9 @@
                             }
                         },
                         "url": {
-                            "raw": "{{baseUrl}}/api/auth/login",
+                            "raw": "http://localhost:8080/api/auth/login",
                             "host": [
-                                "{{baseUrl}}"
+                                "http://localhost:8080"
                             ],
                             "path": [
                                 "api",
@@ -88,9 +88,9 @@
                         "method": "GET",
                         "header": [],
                         "url": {
-                            "raw": "{{baseUrl}}/api/products",
+                            "raw": "http://localhost:8080/api/products",
                             "host": [
-                                "{{baseUrl}}"
+                                "http://localhost:8080"
                             ],
                             "path": [
                                 "api",
@@ -106,9 +106,9 @@
                         "method": "GET",
                         "header": [],
                         "url": {
-                            "raw": "{{baseUrl}}/api/products/:id",
+                            "raw": "http://localhost:8080/api/products/:id",
                             "host": [
-                                "{{baseUrl}}"
+                                "http://localhost:8080"
                             ],
                             "path": [
                                 "api",
@@ -150,9 +150,9 @@
                             }
                         },
                         "url": {
-                            "raw": "{{baseUrl}}/api/products",
+                            "raw": "http://localhost:8080/api/products",
                             "host": [
-                                "{{baseUrl}}"
+                                "http://localhost:8080"
                             ],
                             "path": [
                                 "api",
@@ -187,9 +187,9 @@
                             }
                         },
                         "url": {
-                            "raw": "{{baseUrl}}/api/products/:id",
+                            "raw": "http://localhost:8080/api/products/:id",
                             "host": [
-                                "{{baseUrl}}"
+                                "http://localhost:8080"
                             ],
                             "path": [
                                 "api",
@@ -222,9 +222,9 @@
                         "method": "DELETE",
                         "header": [],
                         "url": {
-                            "raw": "{{baseUrl}}/api/products/:id",
+                            "raw": "http://localhost:8080/api/products/:id",
                             "host": [
-                                "{{baseUrl}}"
+                                "http://localhost:8080"
                             ],
                             "path": [
                                 "api",
@@ -262,9 +262,9 @@
                         "method": "GET",
                         "header": [],
                         "url": {
-                            "raw": "{{baseUrl}}/api/cart",
+                            "raw": "http://localhost:8080/api/cart",
                             "host": [
-                                "{{baseUrl}}"
+                                "http://localhost:8080"
                             ],
                             "path": [
                                 "api",
@@ -299,9 +299,9 @@
                             }
                         },
                         "url": {
-                            "raw": "{{baseUrl}}/api/cart/add",
+                            "raw": "http://localhost:8080/api/cart/add",
                             "host": [
-                                "{{baseUrl}}"
+                                "http://localhost:8080"
                             ],
                             "path": [
                                 "api",
@@ -337,9 +337,9 @@
                             }
                         },
                         "url": {
-                            "raw": "{{baseUrl}}/api/cart/update/:itemId",
+                            "raw": "http://localhost:8080/api/cart/update/:itemId",
                             "host": [
-                                "{{baseUrl}}"
+                                "http://localhost:8080"
                             ],
                             "path": [
                                 "api",
@@ -373,9 +373,9 @@
                         "method": "DELETE",
                         "header": [],
                         "url": {
-                            "raw": "{{baseUrl}}/api/cart/remove/:itemId",
+                            "raw": "http://localhost:8080/api/cart/remove/:itemId",
                             "host": [
-                                "{{baseUrl}}"
+                                "http://localhost:8080"
                             ],
                             "path": [
                                 "api",
@@ -409,9 +409,9 @@
                         "method": "DELETE",
                         "header": [],
                         "url": {
-                            "raw": "{{baseUrl}}/api/cart/clear",
+                            "raw": "http://localhost:8080/api/cart/clear",
                             "host": [
-                                "{{baseUrl}}"
+                                "http://localhost:8080"
                             ],
                             "path": [
                                 "api",
@@ -452,9 +452,9 @@
                             }
                         },
                         "url": {
-                            "raw": "{{baseUrl}}/api/orders",
+                            "raw": "http://localhost:8080/api/orders",
                             "host": [
-                                "{{baseUrl}}"
+                                "http://localhost:8080"
                             ],
                             "path": [
                                 "api",
@@ -480,9 +480,9 @@
                         "method": "GET",
                         "header": [],
                         "url": {
-                            "raw": "{{baseUrl}}/api/orders",
+                            "raw": "http://localhost:8080/api/orders",
                             "host": [
-                                "{{baseUrl}}"
+                                "http://localhost:8080"
                             ],
                             "path": [
                                 "api",
@@ -517,9 +517,9 @@
                             }
                         },
                         "url": {
-                            "raw": "{{baseUrl}}/api/orders/:id",
+                            "raw": "http://localhost:8080/api/orders/:id",
                             "host": [
-                                "{{baseUrl}}"
+                                "http://localhost:8080"
                             ],
                             "path": [
                                 "api",
@@ -561,9 +561,9 @@
                             }
                         },
                         "url": {
-                            "raw": "{{baseUrl}}/api/orders/:id/status",
+                            "raw": "http://localhost:8080/api/orders/:id/status",
                             "host": [
-                                "{{baseUrl}}"
+                                "http://localhost:8080"
                             ],
                             "path": [
                                 "api",
@@ -587,7 +587,7 @@
             "name": "Inventory",
             "item": [
                 {
-                    "name": "Get Inventory",
+                    "name": "Get All Inventory (Admin)",
                     "request": {
                         "auth": {
                             "type": "bearer",
@@ -602,20 +602,13 @@
                         "method": "GET",
                         "header": [],
                         "url": {
-                            "raw": "{{baseUrl}}/api/inventory/:productId",
+                            "raw": "http://localhost:8080/api/inventory",
                             "host": [
-                                "{{baseUrl}}"
+                                "http://localhost:8080"
                             ],
                             "path": [
                                 "api",
-                                "inventory",
-                                ":productId"
-                            ],
-                            "variable": [
-                                {
-                                    "key": "productId",
-                                    "value": "product_id_here"
-                                }
+                                "inventory"
                             ]
                         }
                     },
@@ -646,9 +639,9 @@
                             }
                         },
                         "url": {
-                            "raw": "{{baseUrl}}/api/inventory/:productId",
+                            "raw": "http://localhost:8080/api/inventory/:productId",
                             "host": [
-                                "{{baseUrl}}"
+                                "http://localhost:8080"
                             ],
                             "path": [
                                 "api",
@@ -686,9 +679,9 @@
                         "method": "GET",
                         "header": [],
                         "url": {
-                            "raw": "{{baseUrl}}/api/dashboard/stats",
+                            "raw": "http://localhost:8080/api/dashboard/stats",
                             "host": [
-                                "{{baseUrl}}"
+                                "http://localhost:8080"
                             ],
                             "path": [
                                 "api",
@@ -715,9 +708,9 @@
                         "method": "GET",
                         "header": [],
                         "url": {
-                            "raw": "{{baseUrl}}/api/dashboard/products/top-selling?limit=5",
+                            "raw": "http://localhost:8080/api/dashboard/products/top-selling?limit=5",
                             "host": [
-                                "{{baseUrl}}"
+                                "http://localhost:8080"
                             ],
                             "path": [
                                 "api",
@@ -756,9 +749,9 @@
                         "method": "GET",
                         "header": [],
                         "url": {
-                            "raw": "{{baseUrl}}/api/users/:id",
+                            "raw": "http://localhost:8080/api/users/:id",
                             "host": [
-                                "{{baseUrl}}"
+                                "http://localhost:8080"
                             ],
                             "path": [
                                 "api",
@@ -800,9 +793,9 @@
                             }
                         },
                         "url": {
-                            "raw": "{{baseUrl}}/api/users/:id",
+                            "raw": "http://localhost:8080/api/users/:id",
                             "host": [
-                                "{{baseUrl}}"
+                                "http://localhost:8080"
                             ],
                             "path": [
                                 "api",
@@ -849,9 +842,9 @@
                             }
                         },
                         "url": {
-                            "raw": "{{baseUrl}}/api/delivery/:orderId/logistics",
+                            "raw": "http://localhost:8080/api/delivery/:orderId/logistics",
                             "host": [
-                                "{{baseUrl}}"
+                                "http://localhost:8080"
                             ],
                             "path": [
                                 "api",
@@ -868,65 +861,8 @@
                         }
                     },
                     "response": []
-                },
-                {
-                    "name": "Update Delivery Status",
-                    "request": {
-                        "auth": {
-                            "type": "bearer",
-                            "bearer": [
-                                {
-                                    "key": "token",
-                                    "value": "{{token}}",
-                                    "type": "string"
-                                }
-                            ]
-                        },
-                        "method": "PUT",
-                        "header": [],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\n    \"status\": \"Delivered\"\n}",
-                            "options": {
-                                "raw": {
-                                    "language": "json"
-                                }
-                            }
-                        },
-                        "url": {
-                            "raw": "{{baseUrl}}/api/delivery/:orderId/status",
-                            "host": [
-                                "{{baseUrl}}"
-                            ],
-                            "path": [
-                                "api",
-                                "delivery",
-                                ":orderId",
-                                "status"
-                            ],
-                            "variable": [
-                                {
-                                    "key": "orderId",
-                                    "value": "1"
-                                }
-                            ]
-                        }
-                    },
-                    "response": []
                 }
             ]
-        }
-    ],
-    "variable": [
-        {
-            "key": "baseUrl",
-            "value": "http://localhost:8080",
-            "type": "string"
-        },
-        {
-            "key": "token",
-            "value": "",
-            "type": "string"
         }
     ]
 }
