@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.shopsphere.api.repositories.ProductRepository;
+import com.shopsphere.api.exceptions.InventoryNotFoundException;
+import com.shopsphere.api.exceptions.InsufficientStockException;
 
 @Service
 @RequiredArgsConstructor
@@ -62,11 +64,11 @@ public class InventoryServiceImpl implements InventoryService {
     @Transactional
     public void reduceStock(String productId, Integer quantity) {
         Inventory inventory = inventoryRepository.findByProductId(productId)
-                .orElseThrow(() -> new RuntimeException("Inventory not found for product: " + productId));
+                .orElseThrow(() -> new InventoryNotFoundException(productId));
 
         int newQuantity = inventory.getQuantity() - quantity;
         if (newQuantity < 0) {
-            throw new RuntimeException("Insufficient stock for product: " + productId);
+            throw new InsufficientStockException(productId);
         }
         inventory.setQuantity(newQuantity);
         inventoryRepository.save(inventory);
@@ -76,7 +78,7 @@ public class InventoryServiceImpl implements InventoryService {
     @Transactional
     public void increaseStock(String productId, Integer quantity) {
         Inventory inventory = inventoryRepository.findByProductId(productId)
-                .orElseThrow(() -> new RuntimeException("Inventory not found for product: " + productId));
+                .orElseThrow(() -> new InventoryNotFoundException(productId));
 
         inventory.setQuantity(inventory.getQuantity() + quantity);
         inventoryRepository.save(inventory);
