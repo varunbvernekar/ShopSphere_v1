@@ -1,0 +1,25 @@
+# Common
+.DS_Store
+.vscode/
+.idea/
+*.iml
+*.log
+
+# Frontend
+Frontend/node_modules/
+Frontend/dist/
+Frontend/.angular/
+Frontend/npm-debug.log*
+Frontend/yarn-error.log*
+Frontend/.cache/
+Frontend/coverage/
+
+# Backend
+backend/target/
+backend/*.class
+backend/*.jar
+backend/*.war
+backend/*.ear
+backend/uploads/
+backend/application-local.properties
+backend/secrets.properties

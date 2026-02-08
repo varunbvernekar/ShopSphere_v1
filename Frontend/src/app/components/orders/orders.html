@@ -1,0 +1,80 @@
+<div class="orders-page">
+  <header class="orders-header">
+    <h1>Order Tracking</h1>
+
+
+    <!-- Loading / error -->
+    <div *ngIf="isLoading" class="orders-loading">
+      Loading orders...
+    </div>
+    <div *ngIf="!isLoading && errorMessage" class="orders-error">
+      {{ errorMessage }}
+    </div>
+
+    <!-- CUSTOMER VIEW -->
+    <ng-container *ngIf="!isLoading && !errorMessage">
+      <div class="orders-layout" *ngIf="orders.length > 0; else noOrdersCustomer">
+        <!-- Left: order list -->
+        <aside class="orders-list">
+          <h2 class="panel-title">Your Orders</h2>
+
+          <div *ngFor="let order of orders" class="order-list-item" [class.active]="order === selectedOrder"
+            (click)="selectOrder(order)">
+            <div class="order-list-content">
+              <div class="order-list-header">
+                <div class="order-id">{{ getOrderId(order) }}</div>
+                <div class="order-status-chip" [ngClass]="order.status">
+                  {{ order.status }}
+                </div>
+              </div>
+
+              <div class="order-list-meta">
+                <span class="order-date">{{ order.placedOn | date:'mediumDate' }}</span>
+                <span class="order-price">₹{{ order.amount }}</span>
+              </div>
+            </div>
+            <div class="order-status-icon" [ngClass]="order.status">
+              <span class="material-symbols-rounded">{{ getStatusIcon(order.status) }}</span>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Right: details -->
+        <section class="orders-detail" *ngIf="selectedOrder; else emptyState">
+          <div class="detail-header"
+            style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; border-bottom: 1px solid #eee;">
+            <h2>Order #{{ getOrderId(selectedOrder) }}</h2>
+            <button class="cancel-btn"
+              style="background: #ff4444; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;"
+              [disabled]="!canCancel(selectedOrder)" [style.opacity]="!canCancel(selectedOrder) ? '0.5' : '1'"
+              [title]="!canCancel(selectedOrder) ? 'Cannot cancel this order' : 'Cancel Order'"
+              (click)="cancelOrder(selectedOrder)">
+              Cancel Order
+            </button>
+          </div>
+          <app-delivery-tracking [order]="selectedOrder"></app-delivery-tracking>
+        </section>
+
+        <!-- Placeholder when nothing selected -->
+        <ng-template #emptyState>
+          <section class="orders-detail empty">
+            <div class="empty-box">
+              <div class="empty-icon"><span class="material-symbols-rounded">shopping_bag</span></div>
+              <p>Select an order to view details</p>
+            </div>
+          </section>
+        </ng-template>
+      </div>
+
+      <ng-template #noOrdersCustomer>
+        <section class="orders-detail empty">
+          <div class="empty-box">
+            <div class="empty-icon"><span class="material-symbols-rounded">shopping_cart</span></div>
+            <p>You have not placed any orders yet.</p>
+          </div>
+        </section>
+      </ng-template>
+    </ng-container>
+
+  </header>
+</div>
