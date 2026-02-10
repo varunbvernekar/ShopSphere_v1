@@ -11,6 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.shopsphere.api.repositories.ProductRepository;
 import com.shopsphere.api.exceptions.InventoryNotFoundException;
 import com.shopsphere.api.exceptions.InsufficientStockException;
+import com.shopsphere.api.exceptions.ProductNotFoundException;
+
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -21,12 +24,9 @@ public class InventoryServiceImpl implements InventoryService {
 
     @Override
     public InventoryResponseDTO getInventory(String productId) {
+        validateProductExists(productId);
         Inventory inventory = inventoryRepository.findByProductId(productId)
-                .orElse(Inventory.builder()
-                        .productId(productId)
-                        .quantity(0)
-                        .reorderThreshold(0)
-                        .build());
+                .orElseThrow(() -> new InventoryNotFoundException(productId));
         return mapToResponse(inventory);
     }
 
@@ -34,18 +34,15 @@ public class InventoryServiceImpl implements InventoryService {
     public java.util.List<InventoryResponseDTO> getAllInventory() {
         return inventoryRepository.findAll().stream()
                 .map(this::mapToResponse)
-                .collect(java.util.stream.Collectors.toList());
+                .collect(Collectors.toList());
     }
 
     @Override
     @Transactional
     public InventoryResponseDTO updateInventory(String productId, StockUpdateRequestDTO request) {
+        validateProductExists(productId);
         Inventory inventory = inventoryRepository.findByProductId(productId)
-                .orElse(Inventory.builder()
-                        .productId(productId)
-                        .quantity(0)
-                        .reorderThreshold(0)
-                        .build());
+                .orElseThrow(() -> new InventoryNotFoundException(productId));
 
         if (request.getQuantity() != null) {
             if (request.getQuantity() < 0) {
@@ -63,6 +60,7 @@ public class InventoryServiceImpl implements InventoryService {
     @Override
     @Transactional
     public void reduceStock(String productId, Integer quantity) {
+        validateProductExists(productId);
         Inventory inventory = inventoryRepository.findByProductId(productId)
                 .orElseThrow(() -> new InventoryNotFoundException(productId));
 
@@ -77,6 +75,7 @@ public class InventoryServiceImpl implements InventoryService {
     @Override
     @Transactional
     public void increaseStock(String productId, Integer quantity) {
+        validateProductExists(productId);
         Inventory inventory = inventoryRepository.findByProductId(productId)
                 .orElseThrow(() -> new InventoryNotFoundException(productId));
 
@@ -87,6 +86,7 @@ public class InventoryServiceImpl implements InventoryService {
     @Override
     @Transactional
     public void initializeInventory(String productId, Integer quantity, Integer threshold) {
+        validateProductExists(productId);
         if (inventoryRepository.findByProductId(productId).isPresent()) {
             return; // Already exists
         }
@@ -101,8 +101,14 @@ public class InventoryServiceImpl implements InventoryService {
     @Override
     @Transactional
     public void deleteInventory(String productId) {
-
+        validateProductExists(productId);
         inventoryRepository.deleteByProductId(productId);
+    }
+
+    private void validateProductExists(String productId) {
+        if (!productRepository.existsById(productId)) {
+            throw new ProductNotFoundException(productId);
+        }
     }
 
     private InventoryResponseDTO mapToResponse(Inventory inventory) {
